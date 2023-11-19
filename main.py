@@ -11,6 +11,10 @@ def accuracy_score(y_true, y_predict):
     true_neg = 0
     false_pos = 0
     false_neg = 0
+    if len(y_true) != len(y_predict):
+        raise ValueError(f"Mismatch in lengths {len(y_true)} and {len(y_predict)}")
+    if len(y_true) == 0:
+        raise ValueError(f"No elements")
     for i in range(len(y_true)):
         if y_true[i] == y_predict[i] == 0:
             true_neg+=1
