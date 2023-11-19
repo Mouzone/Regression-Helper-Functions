@@ -1,32 +1,38 @@
 import numpy as np
 
 
+# helper functions
+def check_valid_inputs(first, second):
+    if len(first) != len(second):
+        raise ValueError(f"Mismatch in lengths {len(first)} and {len(second)}")
+    if len(first) == 0:
+        raise ValueError(f"No elements")
+
+
 # y_predict and y_true is numpy array
 def accuracy_score(y_true, y_predict):
-    # TP + TN/TP+TN+FP+FN
-    # TP is when both are 1
-    # TN is when both are 0
-    # FP is when y_true is 0 and y_predict is 1
-    # FN is when y_true is 1 and y_predict is 0
+    try:
+        check_valid_inputs(y_true, y_predict)
+    except ValueError as e:
+        print(f"Error: {e}")
+        return None  # Or you can return a specific value indicating failure
+
     true_pos = 0
     true_neg = 0
     false_pos = 0
     false_neg = 0
-    if len(y_true) != len(y_predict):
-        raise ValueError(f"Mismatch in lengths {len(y_true)} and {len(y_predict)}")
-    if len(y_true) == 0:
-        raise ValueError(f"No elements")
+
     for i in range(len(y_true)):
         if y_true[i] == y_predict[i] == 0:
-            true_neg+=1
+            true_neg += 1
         elif y_true[i] == y_predict[i] == 1:
-            true_pos+=1
-        elif y_true == 1:
+            true_pos += 1
+        elif y_true[i] == 1 and y_predict[i] == 0:
             false_neg += 1
-        else:
+        elif y_true[i] == 0 and y_predict[i] == 1:
             false_pos += 1
-    
-    return (true_neg + true_pos)/(true_neg+true_pos+false_neg+false_pos)
+
+    return (true_neg + true_pos) / (true_neg + true_pos + false_neg + false_pos)
 
 
 def recall_score(y_true, y_predict):
