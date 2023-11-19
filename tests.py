@@ -1,28 +1,26 @@
-# test_functions.py
-
 import unittest
 import numpy as np
 from main import check_valid_inputs, accuracy_score  # Replace 'your_module' with the actual module name
 
 class TestCheckValidInputsFunction(unittest.TestCase):
     def test_check_valid_inputs_valid_input(self):
-        first = np.array([1, 2, 3])
-        second = np.array([4, 5, 6])
-        self.assertIsNone(check_valid_inputs(first, second))
+        y_true = np.array([1, 2, 3])
+        y_predict = np.array([4, 5, 6])
+        self.assertIsNone(check_valid_inputs(y_true, y_predict))
 
-    def test_check_valid_inputs_mismatched_lengths(self):
-        first = np.array([1, 2, 3])
-        second = np.array([4, 5])
+    def test_check_valid_inputs_mismatched_shapes(self):
+        y_true = np.array([1, 2, 3])
+        y_predict = np.array([4, 5])
         with self.assertRaises(ValueError) as context:
-            check_valid_inputs(first, second)
-        self.assertEqual(str(context.exception), "Mismatch in lengths 3 and 2")
+            check_valid_inputs(y_true, y_predict)
+        self.assertEqual(str(context.exception), "Mismatch in shapes: (3,) and (2,)")
 
     def test_check_valid_inputs_empty_input(self):
-        first = np.array([])
-        second = np.array([])
+        y_true = np.array([])
+        y_predict = np.array([])
         with self.assertRaises(ValueError) as context:
-            check_valid_inputs(first, second)
-        self.assertEqual(str(context.exception), "No elements")
+            check_valid_inputs(y_true, y_predict)
+        self.assertEqual(str(context.exception), "Input arrays must not be empty")
 
 class TestAccuracyScoreFunction(unittest.TestCase):
     def test_accuracy_score_all_correct(self):
@@ -53,7 +51,7 @@ class TestAccuracyScoreFunction(unittest.TestCase):
         y_predict = np.array([0, 1])
         with self.assertRaises(ValueError) as context:
             accuracy_score(y_true, y_predict)
-        self.assertEqual(str(context.exception), "Mismatch in lengths 3 and 2")
+        self.assertEqual(str(context.exception), "Mismatch in shapes: (3,) and (2,)")
 
 
 if __name__ == '__main__':
