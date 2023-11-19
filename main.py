@@ -6,15 +6,33 @@ def accuracy_score(y_true, y_predict):
     #TN is when both are 0
     #FP is when y_true is 0 and y_predict is 1
     #FN is when y_true is 1 and y_predict is 0
-    return
+    true_pos = 0
+    true_neg = 0
+    false_pos = 0
+    false_neg = 0
+    for i in range(len(y_true)):
+        if y_true[i] == y_predict[i] == 0:
+            true_neg+=1
+        elif y_true[i] == y_predict[i] == 1:
+            true_pos+=1
+        elif y_true == 1:
+            false_neg += 1
+        else:
+            false_pos += 1
+    
+    return (true_neg + true_pos)/(true_neg+true_pos+false_neg+false_pos)
+
 def recall_score(y_true, y_predict):
     #TP/TP+FN
     return
+    
 def precision_score(y_true, y_predict):
     #TP/TP+FP
     return
+
 def f1_score(y_true, y_predict):
     #2*Precision*Recall/(Precision+Recall)
     return
+
 def train_test_split(x, y):
     return
