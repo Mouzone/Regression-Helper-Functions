@@ -55,5 +55,6 @@ class TestAccuracyScoreFunction(unittest.TestCase):
             accuracy_score(y_true, y_predict)
         self.assertEqual(str(context.exception), "Mismatch in lengths 3 and 2")
 
+
 if __name__ == '__main__':
     unittest.main()
