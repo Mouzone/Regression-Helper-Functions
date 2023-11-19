@@ -1,4 +1,5 @@
 import numpy as np
+
 #y_predict and y_true is numpy array
 def accuracy_score(y_true, y_predict):
     #TP + TN/TP+TN+FP+FN
