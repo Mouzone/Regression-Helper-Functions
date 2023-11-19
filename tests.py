@@ -3,6 +3,7 @@
 import unittest
 from main import accuracy_score  # Replace 'your_module' with the actual module name
 
+
 class TestAccuracyScoreFunction(unittest.TestCase):
     def test_accuracy_score_all_correct(self):
         y_true = [1, 1, 0, 0, 1]
@@ -35,6 +36,7 @@ class TestAccuracyScoreFunction(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             accuracy_score(y_true, y_predict)
         self.assertEqual(str(context.exception), "Mismatch in lengths 3 and 2")
+
 
 if __name__ == '__main__':
     unittest.main()
