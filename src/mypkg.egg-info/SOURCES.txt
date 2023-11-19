@@ -1,0 +1,9 @@
+pyproject.toml
+src/mypkg/__init__.py
+src/mypkg/functions.py
+src/mypkg.egg-info/PKG-INFO
+src/mypkg.egg-info/SOURCES.txt
+src/mypkg.egg-info/dependency_links.txt
+src/mypkg.egg-info/top_level.txt
+tests/test_scoring.py
+tests/test_valid_input.py
